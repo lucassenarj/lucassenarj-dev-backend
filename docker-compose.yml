@@ -1,0 +1,39 @@
+version: '3.1'
+
+services:
+
+  wordpress:
+    image: wordpress
+    container_name: wordpress
+    restart: "no"
+    ports:
+      - 8080:80
+    environment:
+      WORDPRESS_DB_HOST: mysql
+      WORDPRESS_DB_USER: lucasenarj
+      WORDPRESS_DB_PASSWORD: lucassenarj
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - wordpress:/var/www/html
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    restart: "no"
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: lucasenarj
+      MYSQL_PASSWORD: lucassenarj
+      # MYSQL_ROOT_PASSWORD: admin
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+    volumes:
+      - mysql:/var/lib/mysql
+
+volumes:
+  wordpress:
+  mysql:
+
+
+# docker-compose up -d --build
+# docker exec -it mysql mysql -u root -p
+# 7)^P9B.NcAbTD$h
